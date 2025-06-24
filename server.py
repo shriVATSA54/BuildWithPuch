@@ -86,26 +86,6 @@ async def send_email(
         print("❌ Error sending email:", str(e))
         return f"❌ Failed to send email: {str(e)}"
 
-# --- Reminder Tool ---
-ReminderToolDescription = RichToolDescription(
-    description="Sets a reminder to notify you after a certain number of minutes.",
-    use_when="User says something like 'Remind me to drink water in 10 minutes'.",
-    side_effects="Sends a reminder message after the specified delay."
-)
-
-@mcp.tool(description=ReminderToolDescription.model_dump_json())
-async def remind(
-    message: Annotated[str, Field(description="What to remind you about.")],
-    after_minutes: Annotated[int, Field(description="How many minutes from now to remind you.")]
-) -> str:
-    def send_reminder():
-        print(f"[REMINDER] ⏰: {message}")
-        with open("reminder_log.txt", "a") as f:
-            f.write(f"[{datetime.now()}] Reminder: {message}\n")
-
-    run_time = datetime.now() + timedelta(minutes=after_minutes)
-    scheduler.add_job(send_reminder, trigger='date', run_date=run_time)
-    return f"⏰ Reminder set: '{message}' in {after_minutes} minute(s)."
 
 # --- In-Memory ToDo Storage ---
 todo_list = []
