@@ -83,9 +83,9 @@ Connect Puch AI to your MCP server using the following command:
 ## Results
 
 ![Results](mcp2todo.png)
-![Results](mcp3mailPuch)
-![Results](mcp1mail)
-![Results](mcp5mytododelete)
+![Results1](mcp3mailPuch.png)
+![Results2](mcp1mail.png)
+![Results3](mcp5mytododelete.png)
 
 
 ## Author
